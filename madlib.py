@@ -7,13 +7,12 @@ is between the {}. It will then replace the {} with the user's input.
 import re
 
 
-
 def get_template():
     """
     Function that reads in text from a file called `madlib_template.txt`
-    that exists in the same folder. It generates a string from this text.
+    that exists in the same folder as this module. It creates and returns
+    a string from this text.
     """
-
     with open('./madlib_template.txt', 'r') as template:
         read_data = template.read()
     return read_data
@@ -21,10 +20,9 @@ def get_template():
 
 def generate_prompts(str):
     """
-    Function that takes in a string and returns two arrays. The `words` array
-    will contain the content between the {} from the original string. The
-    `user_input` array will contain the user's responses to prompts using each
-    element of the words array.
+    Function that takes in a string and returns an array. The returned array
+    will contain the user's responses to prompts generated using the content
+    between each instance of `{` and `}` from the input string.
     """
     words = []
     user_input = []
@@ -36,7 +34,10 @@ def generate_prompts(str):
 
 def generate_new_string(arr, str):
     """
-    
+    Function that takes in an array and a string and returns a new string.
+    A new string will be emptied of all contents between any instance of `{}`
+    and then all instances of `{}` will be replaced with each element of the
+    input array. The new string is then returned.
     """
     emptied_string = re.sub((r"(?<={)[\w<>' -]+(?=})"), '', str)
     final_string = emptied_string.format(*arr)
@@ -45,8 +46,8 @@ def generate_new_string(arr, str):
 
 def write_result(str):
     """
-    Function that writes a string to a new file called madlib_result.txt
-    in the same folder as this module.
+    Function that takes in a string and writes that string to a new file
+    called madlib_result.txt in the same folder as this module.
     """
     with open('./madlib_result.txt', 'w') as result:
         result.write(str)
