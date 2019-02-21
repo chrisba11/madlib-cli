@@ -7,6 +7,7 @@ is between the {}. It will then replace the {} with the user's input.
 import re
 
 
+
 def get_template():
     """
     Function that reads in text from a file called `madlib_template.txt`
@@ -18,24 +19,27 @@ def get_template():
     return read_data
 
 
-def generate_prompts():
+def generate_prompts(str):
     """
     Function that takes in a string and returns two arrays. The `words` array
     will contain the content between the {} from the original string. The
     `user_input` array will contain the user's responses to prompts using each
     element of the words array.
     """
-    words += re.findall(r"(?<={)[\w<>' -]+(?=})", original_string)
+    words = []
+    user_input = []
+    words += re.findall(r"(?<={)[\w<>' -]+(?=})", str)
     for word in words:
         user_input.append(input('Give me a new ' + word + ': '))
+    return user_input
 
 
-def generate_new_string():
+def generate_new_string(arr, str):
     """
     
     """
-    emptied_string = re.sub((r"(?<={)[\w<>' -]+(?=})"), '', original_string)
-    final_string = emptied_string.format(*user_input)
+    emptied_string = re.sub((r"(?<={)[\w<>' -]+(?=})"), '', str)
+    final_string = emptied_string.format(*arr)
     return final_string
 
 
@@ -48,9 +52,8 @@ def write_result(str):
         result.write(str)
 
 
-words = []
-user_input = []
 original_string = get_template()
-generate_prompts()
-write_result(generate_new_string())
+user_input = generate_prompts(original_string)
+final_string = generate_new_string(user_input, original_string)
+write_result(final_string)
 print(final_string)
