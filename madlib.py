@@ -7,13 +7,13 @@ is between the {}. It will then replace the {} with the user's input.
 import re
 
 
-def get_template():
+def get_template(path, permission):
     """
-    Function that reads in text from a file called `madlib_template.txt`
-    that exists in the same folder as this module. It creates and returns
-    a string from this text.
+    Function that reads in text from a file at path with specified permission
+    that exists in the same folder as this module. It creates and returns a
+    string from this text.
     """
-    with open('./madlib_template.txt', 'r') as template:
+    with open(path, permission) as template:
         read_data = template.read()
     return read_data
 
@@ -44,17 +44,18 @@ def generate_new_string(arr, str):
     return final_string
 
 
-def write_result(str):
+def write_result(str, path, permission):
     """
     Function that takes in a string and writes that string to a new file
     called madlib_result.txt in the same folder as this module.
     """
-    with open('./madlib_result.txt', 'w') as result:
+    with open(path, permission) as result:
         result.write(str)
 
 
-original_string = get_template()
-user_input = generate_prompts(original_string)
-final_string = generate_new_string(user_input, original_string)
-write_result(final_string)
-print(final_string)
+if __name__ == "__main__":
+    original_string = get_template('./madlib_template.txt', 'r')
+    user_input = generate_prompts(original_string)
+    final_string = generate_new_string(user_input, original_string)
+    write_result(final_string, './madlib_result.txt', 'w')
+    print(final_string)
