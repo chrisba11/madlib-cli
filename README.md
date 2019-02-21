@@ -5,10 +5,10 @@ This program will generate a madlip story from user prompts
 **Version**: 1.0.0
 
 ## Overview
-This app will read a text file
+This app will read a text file, create a string from that file, find all occurances of text inside {} and generate prompts for user input, then it will user the user input to replace all {} and print the new string to a new file.
 
 ## Getting Started
-
+Run the program and respond to all prompts. Read the resulting story.
 
 ## Architecture
 
