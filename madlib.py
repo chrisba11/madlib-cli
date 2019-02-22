@@ -24,6 +24,18 @@ def generate_prompts(str):
     will contain the user's responses to prompts generated using the content
     between each instance of `{` and `}` from the input string.
     """
+
+    welcome = """
+
+
+Hello, and welcome to my game! We are going to produce a MadLib story.
+I will begin to ask you to choose and write down various word classes
+(i.e. Noun, Verb, Adjective). We will use your responses to produce our
+story. Please be sure to press enter after each response. Let's go!
+
+
+    """
+    print(welcome)
     words = []
     user_input = []
     words += re.findall(r"(?<={)[\w<>' -]+(?=})", str)
