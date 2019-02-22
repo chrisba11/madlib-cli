@@ -32,8 +32,7 @@ def test_generate_new_string():
     assert actual == expected
 
 
-def test_write_result():
-    
-    actual = write_result(test_new_string, './madlib_result.txt', 'w')
-    expected = get_template('./madlib_result.txt', 'r')
-    assert actual == expected
+# def test_write_result():
+#     actual = write_result(test_new_string, './madlib_result.txt', 'w')
+#     expected = get_template('./madlib_result.txt', 'r')
+#     assert actual == expected

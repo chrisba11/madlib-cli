@@ -16,3 +16,7 @@ Run the program and respond to all prompts. Read the resulting story.
 ## API
 
 
+## Attribution
+Paul Williamsen and I worked on this together for a few hours. We found some uses of various string methods online that proved very helpful. (.findall() being the real lifesaver)
+
+
